@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
-import Settings from "../../components/Settings";
-import { SocketContext } from "../../SocketContext";
+import React, { useContext, useEffect } from "react"
+import Settings from "../../components/Settings"
+import { SocketContext } from "../../SocketContext"
 import {
   Container,
   Wrap,
@@ -21,7 +21,7 @@ import {
   HStack,
   StackDivider,
   Box,
-} from "@chakra-ui/react";
+} from "@chakra-ui/react"
 
 export default function Lobby() {
   const [
@@ -42,81 +42,83 @@ export default function Lobby() {
     setWordToGuessArray,
     correctPlayer,
     setCorrectPlayer,
-  ] = useContext(SocketContext);
+  ] = useContext(SocketContext)
 
   useEffect(() => {
     socket.on("room_data", (users) => {
-      setAvailablePlayers([...users]);
-    });
-  }, [socket]);
+      setAvailablePlayers([...users])
+    })
+  }, [socket])
 
   useEffect(() => {
     socket.on("set_host", (host) => {
-      setHost(host);
-    });
+      setHost(host)
+    })
     socket.on("initial_room_data", (player) => {
-      setPlayer(player);
-    });
-  }, []);
+      setPlayer(player)
+    })
+  }, [])
 
   return (
     <>
-      <div className="lobby">
+      <div className='lobby'>
         <Box
-          bg="linear-gradient( 135deg, #845EC2 10%, #D65DB1 100%)"
-          transition="0.5s linear"
+          bg={"rgba(132, 94, 194,0.5)"}
+          backdropFilter='auto'
+          backdropBlur='xl'
+          transition='0.5s linear'
           initial={{ opacity: 0.55, x: 390 }}
           animate={{ opacity: 1, x: 0 }}
-          justifyContent="center"
-          alignItems="center"
+          justifyContent='center'
+          alignItems='center'
         >
-          <div className="lobbyPlayersContainer">
+          <div className='lobbyPlayersContainer'>
             <div>
               <Text
-                fontSize="4xl"
-                fontWeight="bold"
-                textAlign="center"
-                marginTop=".5em"
+                fontSize='4xl'
+                fontWeight='bold'
+                textAlign='center'
+                marginTop='.5em'
               >
                 {" "}
                 PLAYERS IN LOBBY
               </Text>
               <Text
-                fontSize="2xl"
-                fontWeight="bold"
-                textAlign="center"
-                marginBottom="2em"
+                fontSize='2xl'
+                fontWeight='bold'
+                textAlign='center'
+                marginBottom='2em'
               >
                 {" "}
-                Room Number: <span className="roomNum">{room}</span>
+                Room Number: <span className='roomNum'>{room}</span>
               </Text>
               {availablePlayers.map((user, index) => (
                 <>
                   <VStack
-                    divider={<StackDivider borderColor="gray.200" />}
+                    divider={<StackDivider borderColor='gray.200' />}
                     spacing={4}
-                    align="stretch"
-                    justifyContent="center"
+                    align='stretch'
+                    justifyContent='center'
                     my={5}
                   >
                     <HStack spacing={5}>
                       <Avatar
                         name={user.username}
-                        src="https://bit.ly/broken-link"
+                        src='https://bit.ly/broken-link'
                       >
-                        <AvatarBadge bg="green.500" boxSize="1em" />
+                        <AvatarBadge bg='green.500' boxSize='1em' />
                       </Avatar>
                       {user.host ? (
-                        <Text fontSize="2xl" fontWeight="bold">
+                        <Text fontSize='2xl' fontWeight='bold'>
                           {" "}
                           HOST:{" "}
-                          <span className="uppercase"> {user.username}</span>
+                          <span className='uppercase'> {user.username}</span>
                         </Text>
                       ) : (
                         <Text
-                          className="uppercase"
-                          fontSize="2xl"
-                          fontWeight="bold"
+                          className='uppercase'
+                          fontSize='2xl'
+                          fontWeight='bold'
                         >
                           {user.username}
                         </Text>
@@ -132,5 +134,5 @@ export default function Lobby() {
         <Settings />
       </div>
     </>
-  );
+  )
 }

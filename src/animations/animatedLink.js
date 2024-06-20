@@ -1,10 +1,11 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React from "react"
+import { motion } from "framer-motion"
 
 export const AnimatedLink = ({ children }) => {
   return (
     <motion.li
-      className="ul-navbar"
+      className='ul-navbar'
+      style={{ "list-style-type": "none" }}
       whileHover={{
         color: "#fcf2ef",
         scale: [1.1, 1.2, 1.1, 1.2, 1],
@@ -18,5 +19,5 @@ export const AnimatedLink = ({ children }) => {
     >
       {children}
     </motion.li>
-  );
-};
+  )
+}
